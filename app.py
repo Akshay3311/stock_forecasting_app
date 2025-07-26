@@ -9,6 +9,11 @@ import datetime
 # Forecasting libraries
 from statsmodels.tsa.arima.model import ARIMA
 from statsmodels.tsa.statespace.sarimax import SARIMAX
+
+# Fix for Prophet (Streamlit Cloud)
+import cmdstanpy
+cmdstanpy.install_cmdstan()
+
 from prophet import Prophet
 from tensorflow.keras.models import load_model
 
@@ -50,7 +55,7 @@ if model_option == "ARIMA":
 
 # ---------------------- SARIMA ----------------------
 elif model_option == "SARIMA":
-    model = SARIMAX(df['Close'], order=(2, 1, 2), seasonal_order=(1, 1, 1, 7))  # Try 30 for monthly seasonality
+    model = SARIMAX(df['Close'], order=(2, 1, 2), seasonal_order=(1, 1, 1, 7))
     results = model.fit(disp=False)
     forecast = results.forecast(steps=forecast_period)
 
@@ -108,4 +113,3 @@ elif model_option == "LSTM":
     plt.legend()
     plt.grid(True)
     st.pyplot(plt)
-# Trigger rebuild on Streamlit
