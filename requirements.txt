@@ -5,6 +5,7 @@ matplotlib>=3.4.0
 scikit-learn>=0.24.2
 xlrd>=2.0.1
 statsmodels>=0.13.0
-prophet==1.1.2
+pystan~=2.19.1.1
+prophet
 cmdstanpy==1.0.4
 tensorflow==2.11.0
